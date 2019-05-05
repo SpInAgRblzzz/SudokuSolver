@@ -1,0 +1,39 @@
+.row-wrapper {    
+    display:flex;
+}
+
+.matrix{
+    position: relative;
+    display: inline-block;
+}
+
+.matrix::after{
+    content: '';
+    position: absolute;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    left: 33.333%;
+    right: 33.333%;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.matrix::before{
+    content: '';
+    position: absolute;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    top: 33.333%;
+    bottom: 33.333%;
+    left: 0;
+    right: 0;
+    pointer-events: none;        
+}
+
+.cell {    
+    width: 30px;
+    height: 30px;
+    margin: 7px;
+}
+
