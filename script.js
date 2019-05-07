@@ -143,6 +143,11 @@ function fillAttempt(matrix) {
 function solveSudoku() {
     const inputMatrix = getMatrix();
     const filledMatrix = fillEmpty(inputMatrix);
+    for(let row = 0; row < 9; row++){
+        for(let column = 0; column < 9; column++){
+            document.querySelector(`.row-${row}.column-${column}`).value = filledMatrix[row][column];
+        }
+    }
 }
 
 fillButton.addEventListener('click', solveSudoku)
