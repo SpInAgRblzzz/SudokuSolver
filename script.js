@@ -2,6 +2,8 @@ const fillButton = document.querySelector('.fill-matrix');
 const resetButton = document.querySelector('.reset-matrix');
 const switchMode = document.querySelector('.mode-switcher');
 
+
+
 //функция получения введенной матрицы
 function getMatrix() {
     let matrix = [];
@@ -150,9 +152,19 @@ function solveSudoku() {
     const filledMatrix = fillEmpty(inputMatrix);
     for (let row = 0; row < 9; row++) {
         for (let column = 0; column < 9; column++) {
-            document.querySelector(`.row-${row}.column-${column}`).value = filledMatrix[row][column];
+            document.querySelector(`.row-${row}.column-${column}`).value = filledMatrix[row][column]; 
         }
     }
 }
 
-fillButton.addEventListener('click', solveSudoku)
+//сброс матрицы
+function resetMatrix(){
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(function(cell){
+        cell.value = '';
+        cell.classList.remove('user-filled');
+    });
+} 
+
+fillButton.addEventListener('click', solveSudoku);
+resetButton.addEventListener('click', resetMatrix)
