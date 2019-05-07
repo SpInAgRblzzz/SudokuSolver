@@ -8,7 +8,12 @@ function getMatrix() {
     for (let row = 0; row < 9; row++) {
         let matrixRow = [];
         for (let column = 0; column < 9; column++) {
-            matrixRow.push(+document.querySelector(`.row-${row}.column-${column}`).value);
+            const cell = document.querySelector(`.row-${row}.column-${column}`);
+            const value = +cell.value;
+            matrixRow.push(value);
+            if (value) {
+                cell.classList.add('user-filled');
+            }
         }
         matrix.push(matrixRow);
     }
@@ -143,8 +148,8 @@ function fillAttempt(matrix) {
 function solveSudoku() {
     const inputMatrix = getMatrix();
     const filledMatrix = fillEmpty(inputMatrix);
-    for(let row = 0; row < 9; row++){
-        for(let column = 0; column < 9; column++){
+    for (let row = 0; row < 9; row++) {
+        for (let column = 0; column < 9; column++) {
             document.querySelector(`.row-${row}.column-${column}`).value = filledMatrix[row][column];
         }
     }

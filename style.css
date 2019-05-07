@@ -1,13 +1,13 @@
-.row-wrapper {    
-    display:flex;
+.row-wrapper {
+    display: flex;
 }
 
-.matrix{
+.matrix {
     position: relative;
     display: inline-block;
 }
 
-.matrix::after{
+.matrix::after {
     content: '';
     position: absolute;
     border-left: 2px solid black;
@@ -19,7 +19,7 @@
     pointer-events: none;
 }
 
-.matrix::before{
+.matrix::before {
     content: '';
     position: absolute;
     border-top: 2px solid black;
@@ -28,12 +28,16 @@
     bottom: 33.333%;
     left: 0;
     right: 0;
-    pointer-events: none;        
+    pointer-events: none;
 }
 
-.cell {    
+.cell {
     width: 30px;
     height: 30px;
     margin: 7px;
 }
 
+.user-filled {
+    background-color: #4d5a57;
+    color: white;
+}
