@@ -41,3 +41,17 @@
     background-color: #4d5a57;
     color: white;
 }
+
+.wow{
+    background-color: firebrick;
+}
+
+.mode-switcher{
+    background-color: greenyellow;
+    width: 50px;
+    height: 50px;
+}
+
+.disabled{
+    background-color: firebrick;
+}
