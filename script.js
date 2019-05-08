@@ -1,10 +1,10 @@
 const fillButton = document.querySelector('.fill-matrix');
 const resetButton = document.querySelector('.reset-matrix');
-const switchMode = document.querySelector('.mode-switcher');
+const modeButton = document.querySelector('.mode-switcher');
 
-let stepMode = true;
+let stepMode = false;
 let mult = 0;
-const time = 0;
+const time = 250;
 //функция получения введенной матрицы
 function getMatrix() {
     let matrix = [];
@@ -104,22 +104,22 @@ function fillEmpty(matrix) {
 
             //заполнение ячейки
             if (!Array.isArray(item) && item !== 0) {} else
-            /*if (rule.length === 1) {
-                filledMatrix[row][column] = rule[0];
+                /*if (rule.length === 1) {
+                    filledMatrix[row][column] = rule[0];
 
-                setTimeout((row, column, item) => {
-                    const cell = document.querySelector(`.row-${row}.column-${column}`);
-                    cell.value = item;
-                    cell.classList.add('wow')
-                }, mult * time, row, column, rule[0]);
-                mult++;
+                    setTimeout((row, column, item) => {
+                        const cell = document.querySelector(`.row-${row}.column-${column}`);
+                        cell.value = item;
+                        cell.classList.add('wow')
+                    }, mult * time, row, column, rule[0]);
+                    mult++;
 
-                return fillEmpty(filledMatrix);
-            } else*/
-            if (rule.length > 0) {
-                filledMatrix[row][column] = rule;
-                emptyCells++;
-            } else
+                    return fillEmpty(filledMatrix);
+                } else*/
+                if (rule.length > 0) {
+                    filledMatrix[row][column] = rule;
+                    emptyCells++;
+                } else
             if (rule.length === 0) {
                 return true;
             }
@@ -144,8 +144,12 @@ function fillAttempt(matrix) {
                 for (let i = 0, len = item.length; i < len; i++) {
                     attemptMatrix[row][column] = item[i];
 
-                    setTimeout(fillCell, mult * time, row, column, item[i]);
-                    mult++;
+                    if (stepMode) {
+                        setTimeout(fillCell, mult * time, row, column, item[i]);
+                        mult++;
+                    } else {
+                        fillCell(row, column, item[i]);
+                    }
 
 
                     const attemptResult = fillEmpty(attemptMatrix);
@@ -155,8 +159,10 @@ function fillAttempt(matrix) {
                     return attemptResult;
                 }
 
-                setTimeout(clearCell, mult * time, row, column);
-                mult++;
+                if (stepMode) {
+                    setTimeout(clearCell, mult * time, row, column);
+                    mult++;
+                }
 
                 return true;
             }
@@ -195,5 +201,12 @@ function clearCell(row, column) {
     cell.value = '';
 }
 
+function switchMode() {
+    modeButton.classList.toggle('disabled');
+    stepMode = !stepMode;
+    console.log(stepMode)
+}
+
 fillButton.addEventListener('click', solveSudoku);
 resetButton.addEventListener('click', resetMatrix)
+modeButton.addEventListener('click', switchMode)
